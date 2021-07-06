@@ -104,9 +104,13 @@ def main(args):
 
             assert os.stat(output_filename).st_size > 0, 'File glob did not pick up extracted wiki files from WikiExtractor.'
 
+
+        elif args.dataset == 'ngc_extended':
+            print("Use NGC Dataset one line per article here")
+
     elif args.action == 'sharding':
         # Note: books+wiki requires user to provide list of input_files (comma-separated with no spaces)
-        if args.dataset == 'bookscorpus' or 'wikicorpus' in args.dataset or 'books_wiki' in args.dataset:
+        if args.dataset == 'bookscorpus' or 'wikicorpus' in args.dataset or 'books_wiki' in args.dataset or 'ngc' in args.dataset:
             if args.input_files is None:
                 if args.dataset == 'bookscorpus':
                     args.input_files = [directory_structure['formatted'] + '/bookscorpus_one_book_per_line.txt']
@@ -116,6 +120,8 @@ def main(args):
                     args.input_files = [directory_structure['formatted'] + '/wikicorpus_zh_one_article_per_line.txt']
                 elif args.dataset == 'books_wiki_en_corpus':
                     args.input_files = [directory_structure['formatted'] + '/bookscorpus_one_book_per_line.txt', directory_structure['formatted'] + '/wikicorpus_en_one_article_per_line.txt']
+                elif args.dataset == 'ngc':
+                    args.input_files = [directory_structure['formatted'] + '/ngc_one_article_per_line.txt']
 
             output_file_prefix = directory_structure['sharded'] + '/' + args.dataset + '/' + args.dataset
 
@@ -250,6 +256,7 @@ if __name__ == "__main__":
             'mrpc',
             'sst-2',
             'squad',
+            'ngc',
             'all'
         }
     )

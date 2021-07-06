@@ -22,7 +22,7 @@ if [ "$to_download" = "wiki_books" ] ; then
     python3 /workspace/bert/data/bertPrep.py --action download --dataset bookscorpus
 fi
 
-python3 /workspace/bert/data/bertPrep.py --action download --dataset wikicorpus_en
+#python3 /workspace/bert/data/bertPrep.py --action download --dataset wikicorpus_en
 python3 /workspace/bert/data/bertPrep.py --action download --dataset squad
 python3 /workspace/bert/data/bertPrep.py --action download --dataset mrpc
 python3 /workspace/bert/data/bertPrep.py --action download --dataset sst-2
@@ -48,6 +48,7 @@ cd /workspace/bert/data/download/nvidia_pretrained && \
 python3 /workspace/bert/data/bertPrep.py --action download --dataset google_pretrained_weights  # Redundant, to verify and remove
 
 
+'''
 DATASET="wikicorpus_en"
 # Properly format the text files
 if [ "$to_download" = "wiki_books" ] ; then
@@ -67,3 +68,4 @@ python3 ${BERT_PREP_WORKING_DIR}/bertPrep.py --action create_tfrecord_files --da
 # Create TFRecord files Phase 2
 python3 ${BERT_PREP_WORKING_DIR}/bertPrep.py --action create_tfrecord_files --dataset ${DATASET} --max_seq_length 512 \
  --max_predictions_per_seq 80 --vocab_file ${BERT_PREP_WORKING_DIR}/download/google_pretrained_weights/uncased_L-24_H-1024_A-16/vocab.txt
+'''
